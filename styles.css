@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Color de fondo general */
+}
+
+
+.split-pane {
+    display: flex;
+}
+
+
+.menu {
+    width: 250px; /* Ancho del menú */
+    background-color: #44aacc; /* Azul suave */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para el menú */
+}
+
+
+.menu-header {
+    text-align: center;
+}
+
+
+#inbox-list,
+#labels-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.menu-item {
+    display: block;
+    padding: 10px;
+    color: #000; /* Color de texto negro */
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+.menu-item:hover {
+    background-color: #87e2ee; /* Azul más claro al pasar el ratón */
+}
+
+
+main {
+    flex-grow: 1; /* Para ocupar el resto del espacio */
+    background-color: #b578df; /* Morado suave */
+    padding: 20px;
+}
+
+
+button {
+    background-color: #fae317; /* Amarillo suave */
+    color: #000; /* Color de texto negro */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+button:hover {
+    background-color: #8b8b06; /* Amarillo más claro al pasar el ratón */
+}
+
+
+h1, h2, label {
+    color: #333; /* Color de texto gris oscuro */
+}
+
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .menu {
+        width: 100%; /* Hacer el menú de ancho completo en pantallas más pequeñas */
+    }
+
+
+    main {
+        padding: 10px; /* Reducir padding en pantallas más pequeñas */
+    }
+   
+    button {
+        width: 100%; /* Botones de ancho completo */
+    }
+}
+
+
+.section img {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+
+.body-type {
+    text-align: center;
+}
+
+
+button {
+    margin: 10px;
+}

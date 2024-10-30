@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriEnergia</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de tener un archivo CSS -->
+</head>
+<body>
+
+    <div class="split-pane">
+        <nav class="menu">
+            <div class="menu-header">
+                <h1>NutriEnergia</h1>
+                <p>Menú Principal</p>
+            </div>
+
+            <ul id="inbox-list">
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('calculatorSection')">
+                        <span class="icon">🧮</span>
+                        <span class="label">Calculadora</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('bodyTypesSection')">
+                        <span class="icon">👤</span>
+                        <span class="label">Tipos de Cuerpos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('energyReminderSection')">
+                        <span class="icon">⚡</span>
+                        <span class="label">Recordatorio Energético</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('creditsSection')">
+                        <span class="icon">📜</span>
+                        <span class="label">Créditos de Referencias</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('settingsSection')">
+                        <span class="icon">⚙️</span>
+                        <span class="label">Configuración</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <!-- Aquí va el contenido de cada sección, como en el código anterior -->
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
