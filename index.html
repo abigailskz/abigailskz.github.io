@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriEnergia</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de tener un archivo CSS -->
+    <title>NutriEnergia - App de Nutrición Saludable</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
 
     <div class="split-pane">
         <nav class="menu">
@@ -15,44 +16,246 @@
                 <p>Menú Principal</p>
             </div>
 
+
             <ul id="inbox-list">
                 <li>
-                    <a href="#" class="menu-item" onclick="showSection('calculatorSection')">
-                        <span class="icon">🧮</span>
-                        <span class="label">Calculadora</span>
-                    </a>
+                    <a href="#" class="menu-item" id="showCalculator">Calculadora</a>
+                </li><li>
+                    <a href="#" class="menu-item" id="bodyTypes">Tipos de Cuerpos</a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item" onclick="showSection('bodyTypesSection')">
-                        <span class="icon">👤</span>
-                        <span class="label">Tipos de Cuerpos</span>
-                    </a>
+                    <a href="#" class="menu-item" id="energyReminder">Recordatorio Energético</a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item" onclick="showSection('energyReminderSection')">
-                        <span class="icon">⚡</span>
-                        <span class="label">Recordatorio Energético</span>
-                    </a>
+                    <a href="#" class="menu-item" id="credits">Créditos de Referencias</a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item" onclick="showSection('creditsSection')">
-                        <span class="icon">📜</span>
-                        <span class="label">Créditos de Referencias</span>
-                    </a>
+                    <a href="#" class="menu-item" id="settings">Configuración</a>
                 </li>
+            </ul>
+
+
+            <h2>Etiquetas</h2>
+            <ul id="labels-list">
                 <li>
-                    <a href="#" class="menu-item" onclick="showSection('settingsSection')">
-                        <span class="icon">⚙️</span>
-                        <span class="label">Configuración</span>
-                    </a>
+                    <span class="icon">🔖</span>
+                    <span class="label">Saludable</span>
                 </li>
+                <!-- Repite el bloque anterior para cada etiqueta en labels -->
             </ul>
         </nav>
 
+
         <main id="main-content">
-            <!-- Aquí va el contenido de cada sección, como en el código anterior -->
+            <h2>Contenido Principal</h2>
+            <div id="calculatorSection" style="display:none;">
+                <h1>Calcula tus Calorías y Proteínas Diarias</h1>
+                <form id="calorieForm">
+                    <label for="age">Edad:</label>
+                    <input type="number" id="age" name="age" required>
+                   
+
+
+                    <label for="gender">Sexo:</label>
+                    <select id="gender" name="gender">
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                    </select>
+
+
+                   
+                    <label for="weight">Peso (kg):</label>
+                    <input type="number" id="weight" name="weight" required>
+
+
+                    <label for="activity">Nivel de actividad:</label>
+                    <select id="activity" name="activity">
+                        <option value="sedentario">Sedentario</option>
+                        <option value="ligero">Actividad ligera</option>
+                        <option value="moderado">Actividad moderada</option>
+                        <option value="intenso">Actividad intensa</option>
+                    </select>
+
+
+                    <label for="bodyType">Tipo de cuerpo:</label>
+                    <select id="bodyType" name="bodyType">
+                        <option value="ectomorfo">Ectomorfo</option>
+                        <option value="mesomorfo">Mesomorfo</option>
+                        <option value="endomorfo">Endomorfo</option>
+                    </select>
+                   
+                    <button type="submit">Calcular</button>
+                </form>
+               
+                <div id="result"></div>
+                <button id="nextToFoodLog">Siguiente</button>
+            </div>
+
+
+
+
+            <div id="foodLogSection" class="section" style="display: none;">
+                <h2>Registro de Comidas Diarias</h2>
+                <form id="foodForm">
+                    <label for="food">Selecciona o escribe una comida:</label>
+       
+         <!-- Menú desplegable con opciones de comida comunes -->
+         <select id="foodSelect">
+            <option value="">Selecciona una comida...</option>
+            <option value="manzana">Manzana</option>
+            <option value="plátano">Plátano</option>
+            <option value="pollo">Pollo</option>
+            <option value="arroz">Arroz</option>
+            <option value="agua">Agua</option>
+            <!-- Aquí puedes añadir más opciones según lo que desees -->
+         </select>
+       
+         <!-- Campo de texto para ingresar alimentos que no estén en la lista -->
+         <input type="text" id="foodInput" name="foodInput" placeholder="Escribe otra comida si no está en la lista">
+       
+         <!-- Botón para registrar la comida seleccionada o ingresada -->
+         <button type="button" id="calculateCalories">Registrar Comida</button>
+          </form>
+
+
+            <!-- Donde se muestran los alimentos registrados y sus calorías -->
+          <div id="foodList"></div>
+          <div id="totalCalories">Total de calorías consumidas: 0 kcal</div>
+           <div id="recommendations"></div>
+   
+            <!-- Botones para navegar a otras secciones -->
+          <button id="prevToCalculator">Anterior</button>
+          <button id="nextToIdealCalc">Siguiente</button>
+           </div>
+
+
+            <div id="idealCalcSection" class="section" style="display: none;">
+                <h2>Calculadora de Estatura y Peso Ideal</h2>
+                <form id="idealForm">
+                    <label for="idealAge">Edad:</label>
+                    <input type="number" id="idealAge" name="idealAge" required>
+
+
+                    <label for="gender">Género:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                    </select>
+
+
+                    <button type="submit">Calcular Peso y Estatura Ideal</button>
+                </form>
+
+
+                <div id="idealResult"></div>
+                <button id="prevToFoodLog">Anterior</button>
+            </div>
+           
+            <div id="bodyTypesSection" class="section" style="display: none;">
+                <h2>Tipos de Cuerpos</h2>
+   
+                <div id="mesomorph" class="body-type">
+                    <h3>Mesomorfo</h3>
+                    <img src="mesomorfo.jpg" alt="Cuerpo mesomorfo" class="img-01">
+                    <p>Los mesomorfos tienen una estructura ósea mediana, son naturalmente musculosos y poseen un metabolismo eficiente. Se les recomienda una dieta equilibrada en proteínas y carbohidratos para mantener su musculatura.</p>
+                    <button id="nextToEctomorph" class="nav-button">Siguiente</button>
+                </div>
+           
+               
+                <div id="ectomorph" class="body-type" style="display: none;">
+                    <h3>Ectomorfo</h3>
+                    <img src="ectomorfo.jpg" alt="Cuerpo ectomorfo" class="img-02">
+                    <p>Los ectomorfos suelen ser delgados, con hombros estrechos y un metabolismo rápido. Benefician de una dieta rica en carbohidratos complejos como arroz, pasta y panes integrales para aumentar su masa corporal.</p>
+                    <button id="prevToMesomorph" class="nav-button">Anterior</button>
+                    <button id="nextToEndomorph" class="nav-button">Siguiente</button>
+                </div>
+           
+                <div id="endomorph" class="body-type" style="display: none;">
+                    <h3>Endomorfo</h3>
+                    <img src="endomorfo.jpg" alt="Cuerpo endomorfo" class="img-03">
+                    <p>Los endomorfos tienden a ganar peso fácilmente, con una estructura ósea ancha y mayor masa muscular y grasa. Se recomienda una dieta baja en carbohidratos simples y rica en proteínas y verduras para controlar su peso.</p>
+                    <button id="prevToEctomorph" class="nav-button">Anterior</button>
+                </div>
+
+
+                <div id="nivelesActividad">
+                    <h3>Niveles de Actividad</h3>
+                    <p><strong>Actividad sedentaria:</strong> Cuando el individuo ejecuta menos de 30 minutos de ejercicios al día y menos de tres días a la semana.</p>
+               
+                    <p><strong>Actividad ligera:</strong> Incluye actividades que no requieren un gran esfuerzo físico y que no elevan significativamente la frecuencia cardíaca.</p>
+               
+                    <p><strong>Actividad moderada:</strong> Actividades que requieren un esfuerzo razonable y que elevan la frecuencia cardíaca, pero aún permiten hablar sin dificultad.</p>
+               
+                    <p><strong>Actividad intensa:</strong> Incluye actividades que requieren un alto nivel de esfuerzo y que elevan significativamente la frecuencia cardíaca. Es difícil mantener una conversación durante estas actividades.</p>
+                </div>
+               
+
+
+            </div>
+
+
+            <div id="energyReminderSection" class="section" style="display: none;">
+                <h2>Recordatorio Energético</h2>
+                <form id="reminderForm">
+                    <label for="drinkType">Selecciona la bebida:</label>
+                    <select id="drinkType">
+                        <option value="agua">Agua</option>
+                        <option value="jugo">Jugo</option>
+                        <option value="licuado">Licuado</option>
+                        <option value="bebidaEnergetica">Bebida Energética</option>
+                        <option value="suero">Suero</option>
+                    </select>
+           
+                    <label for="reminderInterval">Cada cuántas horas:</label>
+                    <input type="number" id="reminderInterval" min="1" required>
+           
+                    <button type="submit">Configurar Recordatorio</button>
+                </form>
+           
+                <div id="reminderMessage"></div>
+            </div>
+           
+            <div id="creditsSection" class="section" style="display: none;">
+                <h2>Créditos y Referencias</h2>
+                <h3>Créditos</h3>
+                <p>Agradecimientos a los siguientes nutriologos por su valiosa información:</p>
+                <ul>
+                    <li>Dr. Juan Pérez - Nutriologo especializado en dietas deportivas</li>
+                    <li>Lic. Ana Torres - Experta en nutrición infantil</li>
+                    <li>Dr. Carlos Martínez - Nutriologo clínico con experiencia en enfermedades metabólicas</li>
+                </ul>
+               
+                <h3>Referencias</h3>
+                <p>La información presentada en esta aplicación se basa en las siguientes fuentes:</p>
+                <ul>
+                    <li>Nutrición y salud, de la Universidad Nacional</li>
+                    <li>Manual de dietoterapia, de la Asociación de Nutriologos</li>
+                    <li>Recomendaciones de la Organización Mundial de la Salud sobre alimentación saludable</li>
+                </ul>
+               
+                <p>Esta aplicación busca ofrecer una guía práctica para promover hábitos de alimentación saludable y equilibrada.</p>
+                <button id="prevToMenu">Volver al Menú</button>
+            </div>
+           
+            <div id="settingsSection" class="section" style="display: none;">
+                <h2>Configuración</h2>
+                <label for="darkModeToggle">
+                    <input type="checkbox" id="darkModeToggle"> Activar Modo Oscuro
+                </label>
+                <br>
+                <label for="notificationToggle">
+                    <input type="checkbox" id="notificationToggle"> Recibir Notificaciones de Recordatorio Energético
+                </label>
+                <br>
+                <button id="saveSettings">Guardar Configuración</button>
+            </div>
+           
+           
+
+
         </main>
     </div>
+
 
     <script src="script.js"></script>
 </body>

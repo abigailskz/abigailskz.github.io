@@ -13,9 +13,9 @@ body {
 
 .menu {
     width: 250px; /* Ancho del menú */
-    background-color: #44aacc; /* Azul suave */
+    background-color: #73cae7; /* Azul suave */
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para el menú */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); /* Sombra para el menú */
 }
 
 
@@ -38,23 +38,25 @@ body {
     color: #000; /* Color de texto negro */
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease; /* Transición suave */
 }
 
 
 .menu-item:hover {
-    background-color: #87e2ee; /* Azul más claro al pasar el ratón */
+    background-color: #dfc5e2; /* Azul más claro al pasar el ratón */
 }
 
 
 main {
     flex-grow: 1; /* Para ocupar el resto del espacio */
-    background-color: #b578df; /* Morado suave */
+    background-color: #9e9ee4; /* Morado suave */
     padding: 20px;
+    border-radius: 5px; /* Bordes redondeados */
 }
 
 
 button {
-    background-color: #fae317; /* Amarillo suave */
+    background-color: #f8f40a; /* Amarillo suave */
     color: #000; /* Color de texto negro */
     border: none;
     padding: 10px 15px;
@@ -62,16 +64,17 @@ button {
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
+    transition: background-color 0.3s ease; /* Transición suave */
 }
 
 
 button:hover {
-    background-color: #8b8b06; /* Amarillo más claro al pasar el ratón */
+    background-color: #fafad2; /* Amarillo más claro al pasar el ratón */
 }
 
 
 h1, h2, label {
-    color: #333; /* Color de texto gris oscuro */
+    color: #000000; /* Color de texto gris oscuro */
 }
 
 
@@ -85,7 +88,6 @@ input, select {
 }
 
 
-/* Estilos responsivos */
 @media (max-width: 768px) {
     .menu {
         width: 100%; /* Hacer el menú de ancho completo en pantallas más pequeñas */
@@ -102,18 +104,42 @@ input, select {
 }
 
 
-.section img {
-    width: 100%;
+.img-01 {
+    max-width: 90%;
     height: auto;
-    margin: 10px 0;
+}
+
+.img-02 {
+    max-width: 90%;
+    height: auto;
+}
+
+.img-03 {
+max-width: 90%;
+height: auto;
 }
 
 
-.body-type {
-    text-align: center;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura completa de la vista */
 }
 
 
-button {
-    margin: 10px;
+/* Estilos para modo oscuro */
+.dark-mode {
+    background-color: #121212; /* Fondo oscuro */
+    color: #ffffff; /* Texto claro */
+}
+
+
+.dark-mode .menu {
+    background-color: #1e1e1e; /* Fondo del menú oscuro */
+}
+
+
+.dark-mode .section {
+    background-color: #1e1e1e; /* Fondo de las secciones oscuro */
 }

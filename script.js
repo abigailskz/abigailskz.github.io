@@ -1,5 +1,5 @@
 // Mostrar la sección de la calculadora al hacer clic en el menú
-document.getElementById('nutritionalCalculator').addEventListener('click', function () {
+document.getElementById('showCalculator').addEventListener('click', function () {
     document.getElementById('calculatorSection').style.display = 'block';
 });
 
@@ -12,23 +12,6 @@ document.getElementById('calorieForm').addEventListener('submit', function (e) {
     const weight = document.getElementById('weight').value;
     const activity = document.getElementById('activity').value;
     const bodyType = document.getElementById('bodyType').value;
-    const gender = document.getElementById('gender').value;
-   
-    let pesoIdeal;
-
-
-
-
-
-
-    // Cálculo del peso ideal basado en el género
-    if (gender === 'hombre') {
-        pesoIdeal = (age + 50) * 0.75; // Fórmula simplificada para hombres
-    } else {
-        pesoIdeal = (age + 45) * 0.65; // Fórmula simplificada para mujeres
-    }
-
-
 
 
     let factorActividad;
@@ -61,7 +44,6 @@ document.getElementById('calorieForm').addEventListener('submit', function (e) {
 
 
     document.getElementById('result').innerHTML = `
-    Tu peso ideal es: ${pesoIdeal.toFixed(2)} kg
         Tu consumo diario recomendado es:
         <br>Calorías: ${calorias} kcal.
         <br>Proteínas: ${proteinas} g.
@@ -80,10 +62,7 @@ document.getElementById('calorieForm').addEventListener('submit', function (e) {
 });
 
 
-
-
-
-
+// Nueva función para calcular estatura y peso ideal
 document.getElementById('idealForm').addEventListener('submit', function (e) {
     e.preventDefault();
    
@@ -95,6 +74,7 @@ document.getElementById('idealForm').addEventListener('submit', function (e) {
     let pesoIdeal;
 
 
+    // Fórmula simple para calcular la estatura y peso ideal
     if (gender === 'hombre') {
         estaturaIdeal = 50 + (idealAge * 0.5); // Ejemplo de fórmula para estatura ideal
         pesoIdeal = (estaturaIdeal - 100) + ((estaturaIdeal - 150) / 4); // Fórmula de peso ideal
@@ -115,31 +95,30 @@ document.getElementById('idealForm').addEventListener('submit', function (e) {
 
 // Diccionario de comidas y calorías aproximadas
 const foodCaloriesDict = {
-    "manzana": 0.3,
-    "banana": 1.1,
-    "pollo": 27,
-    "arroz": 2.7,
-    "pan": 9,
-    "pasta": 5,
-    "huevo": 13,
- 
+    "manzana": 52,
+    "banana": 89,
+    "pollo": 165,
+    "arroz": 130,
+    "pan": 265,
+    "pasta": 131,
+    "huevo": 78,
+    "ensalada": 33
 };
 
 
-// Manejar la entrada de alimentos y registrar calorías
+// Manejar la entrada de alimentos
 let totalCalories = 0;
 let foodArray = [];
-
-
 
 
 document.getElementById('calculateCalories').addEventListener('click', function () {
     const foodSelect = document.getElementById('foodSelect').value;
     const foodInput = document.getElementById('foodInput').value.toLowerCase();
-    const foodName = document.getElementById('food').value.toLowerCase(); // Convertimos a minúsculas para evitar errores
-    const foodCalories = foodCaloriesDict[foodName] || 100; // Si no se encuentra, se asume 100 kcal por defecto
+    const foodName = foodSelect || foodInput;
 
 
+    const foodCalories = foodCaloriesDict[foodName] || 100;
+   
     if (foodName) {
         // Agregar la comida a la lista
         foodArray.push({ food: foodName, calories: foodCalories });
@@ -147,18 +126,18 @@ document.getElementById('calculateCalories').addEventListener('click', function 
 
         const foodList = document.getElementById('foodList');
         const foodItem = document.createElement('div');
-        foodItem.textContent = `${foodName.charArt(0).toUpperCase() + foodName.slice(1)}: ${foodCalories} kcal`;
+        foodItem.textContent = `${foodName.charAt(0).toUpperCase() + foodName.slice(1)}: ${foodCalories} kcal`;
         foodList.appendChild(foodItem);
 
 
         // Actualizar el total de calorías
-        totalCalories += foodCalories;S
+        totalCalories += foodCalories;
         document.getElementById('totalCalories').textContent = `Total de calorías consumidas: ${totalCalories} kcal`;
-        document.getElementById('food').value = '';
 
 
         // Limpiar el campo de entrada
-        document.getElementById('food').value = '';
+        document.getElementById('foodInput').value = '';
+        document.getElementById('foodSelect').value = '';
     }
 });
 
@@ -188,34 +167,141 @@ document.getElementById('prevToFoodLog').addEventListener('click', function () {
 });
 
 
-// Mostrar la sección de Tipos de Cuerpos y navegar entre Ectomorfo, Mesomorfo y Endomorfo
+// Mostrar la sección de Tipos de Cuerpos y la primera página (Mesomorfo)
 document.getElementById('bodyTypes').addEventListener('click', function () {
-    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
     document.getElementById('bodyTypesSection').style.display = 'block';
-    document.getElementById('ectomorph').style.display = 'block';
+    document.getElementById('mesomorph').style.display = 'block';
+    document.getElementById('ectomorph').style.display = 'none';
+    document.getElementById('endomorph').style.display = 'none';
 });
 
 
 // Navegación entre los tipos de cuerpo
-document.getElementById('nextToMesomorph').addEventListener('click', function () {
+document.getElementById('nextToEctomorph').addEventListener('click', function () {
+    document.getElementById('mesomorph').style.display = 'none';
+    document.getElementById('ectomorph').style.display = 'block';
+});
+
+
+document.getElementById('prevToMesomorph').addEventListener('click', function () {
     document.getElementById('ectomorph').style.display = 'none';
     document.getElementById('mesomorph').style.display = 'block';
 });
 
 
-document.getElementById('prevToEctomorph').addEventListener('click', function () {
-    document.getElementById('mesomorph').style.display = 'none';
-    document.getElementById('ectomorph').style.display = 'block';
-});
-
-
 document.getElementById('nextToEndomorph').addEventListener('click', function () {
-    document.getElementById('mesomorph').style.display = 'none';
+    document.getElementById('ectomorph').style.display = 'none';
     document.getElementById('endomorph').style.display = 'block';
 });
 
 
-document.getElementById('prevToMesomorph').addEventListener('click', function () {
+document.getElementById('prevToEctomorph').addEventListener('click', function () {
     document.getElementById('endomorph').style.display = 'none';
-    document.getElementById('mesomorph').style.display = 'block';
+    document.getElementById('ectomorph').style.display = 'block';
 });
+
+
+// Mostrar la sección de Recordatorio Energético al hacer clic en el menú
+document.getElementById('energyReminder').addEventListener('click', function () {
+    document.getElementById('energyReminderSection').style.display = 'block';
+    document.getElementById('main-content').querySelectorAll('.section').forEach(section => {
+        if (section !== document.getElementById('energyReminderSection')) {
+            section.style.display = 'none';
+        }
+    });
+});
+
+
+// Manejar la configuración del recordatorio energético
+document.getElementById('reminderForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+
+    const drinkType = document.getElementById('drinkType').value;
+    const reminderInterval = document.getElementById('reminderInterval').value;
+
+
+    // Mostrar el mensaje de recordatorio
+    const reminderMessage = `Recordatorio configurado: Beber ${drinkType} cada ${reminderInterval} horas.`;
+    document.getElementById('reminderMessage').textContent = reminderMessage;
+
+
+    // Aquí podrías agregar lógica para configurar recordatorios más avanzados,
+    // como enviar notificaciones, si decides implementar eso más adelante.
+});
+
+
+// Mostrar la sección de créditos al hacer clic en el menú
+document.getElementById('credits').addEventListener('click', function () {
+    // Ocultar todas las secciones
+    document.getElementById('calculatorSection').style.display = 'none';
+    document.getElementById('foodLogSection').style.display = 'none';
+    document.getElementById('idealCalcSection').style.display = 'none';
+    document.getElementById('bodyTypesSection').style.display = 'none';
+    document.getElementById('energyReminderSection').style.display = 'none';
+   
+    // Mostrar la sección de créditos
+    document.getElementById('creditsSection').style.display = 'block';
+});
+
+
+// Volver al menú desde la sección de créditos
+document.getElementById('prevToMenu').addEventListener('click', function () {
+    // Ocultar la sección de créditos
+    document.getElementById('creditsSection').style.display = 'none';
+   
+    // Mostrar la sección del menú principal (ajusta según tu diseño)
+    document.getElementById('main-content').style.display = 'block'; // Si quieres volver al contenido principal
+});
+
+
+// Mostrar la sección de configuración al hacer clic en el menú
+document.getElementById('settings').addEventListener('click', function () {
+    document.getElementById('settingsSection').style.display = 'block';
+    document.getElementById('calculatorSection').style.display = 'none';
+    document.getElementById('foodLogSection').style.display = 'none';
+    document.getElementById('idealCalcSection').style.display = 'none';
+    document.getElementById('bodyTypesSection').style.display = 'none';
+    document.getElementById('energyReminderSection').style.display = 'none';
+    document.getElementById('creditsSection').style.display = 'none';
+});
+
+
+// Guardar configuración
+document.getElementById('saveSettings').addEventListener('click', function () {
+    const darkMode = document.getElementById('darkModeToggle').checked;
+    const notifications = document.getElementById('notificationToggle').checked;
+
+
+    // Guardar configuración en el almacenamiento local
+    localStorage.setItem('darkMode', darkMode);
+    localStorage.setItem('notifications', notifications);
+
+
+    // Aplicar modo oscuro si está activado
+    if (darkMode) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+
+
+    alert('Configuración guardada!');
+});
+
+
+// Cargar configuración al iniciar la aplicación
+window.onload = function () {
+    const darkMode = localStorage.getItem('darkMode') === 'true';
+    const notifications = localStorage.getItem('notifications') === 'true';
+
+
+    document.getElementById('darkModeToggle').checked = darkMode;
+    document.getElementById('notificationToggle').checked = notifications;
+
+
+    if (darkMode) {
+        document.body.classList.add('dark-mode');
+    }
+};
